@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html
+ xmlns = "http://www.w3.org/1999/xhtml" 
+ xmlns:h = "http://java.sun.com/jsf/html"
+ xmlns:f = "http://java.sun.com/jsf/core"
+>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+coucou
+#{mBean1.message}
+<h:form id="laForm">
+<br/>
+<br/>
+
+<h:panelGrid columns ="3">
+
+<f:facet name="header">
+<h:outputText value="Saisie contrôlée"/>
+</f:facet>
+
+<h:outputLabel value= "Saisie data : " /><h:inputText id="inputData" value = "#{mBean1.data}" label="Saisie data">
+				<f:validateLength maximum="15"/>
+			  </h:inputText>
+			  <h:message for="inputData"/>
+<h:outputLabel value= "Saisie data2 : " /><h:inputText id="inputData2" value = "#{mBean1.data2}"/>
+			   <h:message for="inputData2"/><!-- message associé à l'id inputData2 -->
+<h:outputLabel value= "Civilite : " /> <h:inputText id="civilite" value="#{mBean1.civilite}" required="true" label="civilite">
+				<!-- required="true" permet de vérifier si le champ n'est pas nul -->
+				<!-- <f:validator validatorId = "demojsf1.jsf.exos.MonValidateurCivilite" /> --> <!-- valideur déclaré dans MonValideurCivilite -->
+				<f:validator validatorId = "civiliteValidator" /> <!-- valideur déclaré dans faces-config.xml -->
+				</h:inputText>
+			   <h:message for="civilite" style="color:red"/>
+</h:panelGrid>
+<br/>
+<br/>
+			  <h:outputText id="inputDataXXX" value = "DataXXX"/>
+			  <h:message for="inputDataXXX"/> <!-- message associé à l'id inputData2 -->
+			  <h:messages/> <!-- tous les messages définis dans le beans -->
+<br/>
+<br/>	  
+<!--  Les deux : <h:outputText value = "#{mBean1.lesDeux}"/>
+<br/>
+<br/>
+-->
+<h:commandButton type="submit" value="go"></h:commandButton>
+<br/>
+<br/>
+<h:commandButton type="submit" value="go results" action="jsf3result"></h:commandButton>
+<br/>
+<br/>
+<h:commandButton type="submit" value="go results conditionnel" action="#{mBean1.goConditionnel}"></h:commandButton>
+<br/>
+<br/>
+<h:commandButton type="submit" value="go navigation rule 1" action="pagesuivante"></h:commandButton>
+<br/>
+<br/>
+<h:commandButton type="submit" value="go navigation cas d'erreur" action="#{mBean1.testErreur}"></h:commandButton>
+</h:form>
+</body>
+</html>
